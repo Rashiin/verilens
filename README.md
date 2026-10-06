@@ -148,7 +148,7 @@ verilens bench --dataset pairs --mode static
 
 ```bash
 pip install -e ".[dev]"
-pytest                                   # 59 tests, offline, ~5 s
+pytest                                   # 64 tests, offline, ~5 s
 verilens fetch-smartbugs --dest data/smartbugs
 verilens bench --dataset smartbugs --mode static --out results
 verilens bench --dataset pairs --mode static --out results

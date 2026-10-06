@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import time
 from dataclasses import dataclass, field
+from typing import Any
 
 from .detectors import run_static
 from .findings import Finding, dedupe
@@ -33,6 +34,34 @@ class AnalysisResult:
     seconds: float = 0.0
 
 
+def _items(data: Any, keys: tuple[str, ...]) -> list:
+    """Accept the shapes models actually return: the requested wrapper object, a bare
+    list, a different wrapper key, or a single item."""
+    if isinstance(data, list):
+        return data
+    if isinstance(data, dict):
+        for k in keys:
+            if isinstance(data.get(k), list):
+                return data[k]
+        lists = [v for v in data.values() if isinstance(v, list)]
+        if len(lists) == 1:
+            return lists[0]
+        return [data]
+    return []
+
+
+def verdict_map(data: Any) -> dict[int, dict]:
+    out: dict[int, dict] = {}
+    for pos, v in enumerate(_items(data, ("verdicts", "results", "candidates")), 1):
+        if not isinstance(v, dict) or "verdict" not in v:
+            continue
+        try:
+            out[int(str(v.get("id", pos)).strip().lstrip("#"))] = v
+        except ValueError:
+            out[pos] = v
+    return out
+
+
 def verify(
     source: str, candidates: list[Finding], llm: LLMClient, threshold: float = 0.5
 ) -> tuple[list[Finding], list[str]]:
@@ -42,7 +71,7 @@ def verify(
         batch = candidates[start : start + VERIFY_BATCH]
         try:
             data = parse_json(llm.complete(SYSTEM, verify_prompt(source, batch)))
-            verdicts = {int(v["id"]): v for v in data.get("verdicts", []) if "id" in v}
+            verdicts = verdict_map(data)
         except QuotaExceeded:
             raise
         except Exception as e:  # fail open: keep unverified candidates
@@ -74,7 +103,7 @@ def discover(source: str, unit: SourceUnit, llm: LLMClient, threshold: float = 0
         return [], [f"discover: {e}"]
     out: list[Finding] = []
     errors: list[str] = []
-    items = data.get("findings", []) if isinstance(data, dict) else data
+    items = _items(data, ("findings", "vulnerabilities", "issues"))
     for item in items or []:
         if not isinstance(item, dict):
             continue

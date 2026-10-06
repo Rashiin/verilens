@@ -133,3 +133,38 @@ def test_partial_failures_mark_the_run_incomplete():
     summary = run_benchmark(load_pairs(), "hybrid", "pairs", ReplayClient(flaky), progress=False)
     assert summary["complete"] is False
     assert "INCOMPLETE RUN" in to_markdown(summary)
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [
+        {
+            "verdicts": [
+                {"id": 1, "verdict": "vulnerable", "confidence": 0.9},
+                {"id": 2, "verdict": "not_vulnerable", "confidence": 0.9},
+            ]
+        },
+        [
+            {"id": 1, "verdict": "vulnerable", "confidence": 0.9},
+            {"id": 2, "verdict": "not_vulnerable", "confidence": 0.9},
+        ],
+        [{"verdict": "vulnerable", "confidence": 0.9}, {"verdict": "not_vulnerable", "confidence": 0.9}],
+        {
+            "results": [
+                {"id": "1", "verdict": "vulnerable", "confidence": 0.9},
+                {"id": "#2", "verdict": "not_vulnerable", "confidence": 0.9},
+            ]
+        },
+    ],
+    ids=["wrapped", "bare-list", "no-ids", "other-key-string-ids"],
+)
+def test_verifier_accepts_common_response_shapes(payload):
+    res = analyze(VULN, "hybrid", ReplayClient(lambda s, p: json.dumps(payload)))
+    assert not res.errors
+    assert [f.category for f in res.findings] == ["reentrancy"]
+
+
+def test_discovery_accepts_bare_list():
+    payload = [{"category": "reentrancy", "lines": [6], "confidence": 0.9}]
+    res = analyze(VULN, "llm", ReplayClient(lambda s, p: json.dumps(payload)))
+    assert [(f.category, f.line) for f in res.findings] == [("reentrancy", 6)]
