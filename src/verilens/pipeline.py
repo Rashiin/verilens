@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import re
 import time
 from dataclasses import dataclass, field
 from typing import Any
@@ -34,26 +35,51 @@ class AnalysisResult:
     seconds: float = 0.0
 
 
-def _items(data: Any, keys: tuple[str, ...]) -> list:
+def _items(data: Any, keys: tuple[str, ...], item_keys: tuple[str, ...]) -> list:
     """Accept the shapes models actually return: the requested wrapper object, a bare
-    list, a different wrapper key, or a single item."""
+    list, a different wrapper key, or a single bare item (recognised by ``item_keys``)."""
     if isinstance(data, list):
         return data
     if isinstance(data, dict):
         for k in keys:
             if isinstance(data.get(k), list):
                 return data[k]
-        lists = [v for v in data.values() if isinstance(v, list)]
+        if any(k in data for k in item_keys):
+            return [data]
+        lists = [v for v in data.values() if isinstance(v, list) and v and isinstance(v[0], dict)]
         if len(lists) == 1:
             return lists[0]
-        return [data]
     return []
+
+
+_VERDICT_KEYS = ("verdict", "status", "decision", "classification", "label", "result", "assessment")
+_BOOL_KEYS = ("is_vulnerable", "vulnerable", "exploitable", "true_positive", "is_true_positive", "valid")
+_NEGATIVE = re.compile(r"\b(not|no|false[ _-]?positive|benign|safe|reject|invalid|non)", re.I)
+_POSITIVE = re.compile(r"vuln|true[ _-]?positive|confirm|exploitable|yes|valid", re.I)
+
+
+def parse_verdict(v: dict) -> str | None:
+    """Map a model's verdict (string or boolean, under various keys) to our two labels."""
+    for k in _BOOL_KEYS:
+        if isinstance(v.get(k), bool):
+            return "vulnerable" if v[k] else "not_vulnerable"
+    for k in _VERDICT_KEYS:
+        val = v.get(k)
+        if isinstance(val, bool):
+            return "vulnerable" if val else "not_vulnerable"
+        if isinstance(val, str) and val.strip():
+            if _NEGATIVE.search(val):
+                return "not_vulnerable"
+            if _POSITIVE.search(val):
+                return "vulnerable"
+    return None
 
 
 def verdict_map(data: Any) -> dict[int, dict]:
     out: dict[int, dict] = {}
-    for pos, v in enumerate(_items(data, ("verdicts", "results", "candidates")), 1):
-        if not isinstance(v, dict) or "verdict" not in v:
+    items = _items(data, ("verdicts", "results", "candidates"), _VERDICT_KEYS + _BOOL_KEYS)
+    for pos, v in enumerate(items, 1):
+        if not isinstance(v, dict) or parse_verdict(v) is None:
             continue
         try:
             out[int(str(v.get("id", pos)).strip().lstrip("#"))] = v
@@ -69,9 +95,10 @@ def verify(
     errors: list[str] = []
     for start in range(0, len(candidates), VERIFY_BATCH):
         batch = candidates[start : start + VERIFY_BATCH]
+        raw = ""
         try:
-            data = parse_json(llm.complete(SYSTEM, verify_prompt(source, batch)))
-            verdicts = verdict_map(data)
+            raw = llm.complete(SYSTEM, verify_prompt(source, batch))
+            verdicts = verdict_map(parse_json(raw))
         except QuotaExceeded:
             raise
         except Exception as e:  # fail open: keep unverified candidates
@@ -81,10 +108,10 @@ def verify(
         for i, f in enumerate(batch, 1):
             v = verdicts.get(i)
             if v is None:
-                errors.append(f"verify: no verdict for candidate {i} (line {f.line})")
+                errors.append(f"verify: no verdict for candidate {i} (line {f.line}); response: {raw[:300]!r}")
                 kept.append(f)
                 continue
-            f.verdict = "vulnerable" if str(v.get("verdict", "")).lower().startswith("vuln") else "not_vulnerable"
+            f.verdict = parse_verdict(v)
             f.llm_confidence = as_float(v.get("confidence"))
             f.explanation = str(v.get("explanation", ""))
             f.exploit = str(v.get("exploit", ""))
@@ -103,7 +130,7 @@ def discover(source: str, unit: SourceUnit, llm: LLMClient, threshold: float = 0
         return [], [f"discover: {e}"]
     out: list[Finding] = []
     errors: list[str] = []
-    items = _items(data, ("findings", "vulnerabilities", "issues"))
+    items = _items(data, ("findings", "vulnerabilities", "issues"), ("category",))
     for item in items or []:
         if not isinstance(item, dict):
             continue

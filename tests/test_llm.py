@@ -168,3 +168,36 @@ def test_discovery_accepts_bare_list():
     payload = [{"category": "reentrancy", "lines": [6], "confidence": 0.9}]
     res = analyze(VULN, "llm", ReplayClient(lambda s, p: json.dumps(payload)))
     assert [(f.category, f.line) for f in res.findings] == [("reentrancy", 6)]
+
+
+@pytest.mark.parametrize(
+    "v,expected",
+    [
+        ({"verdict": "vulnerable"}, "vulnerable"),
+        ({"verdict": "not_vulnerable"}, "not_vulnerable"),
+        ({"verdict": "Not Vulnerable"}, "not_vulnerable"),
+        ({"verdict": "false positive"}, "not_vulnerable"),
+        ({"verdict": "true_positive"}, "vulnerable"),
+        ({"status": "confirmed"}, "vulnerable"),
+        ({"is_vulnerable": False}, "not_vulnerable"),
+        ({"vulnerable": True}, "vulnerable"),
+        ({"explanation": "x"}, None),
+    ],
+)
+def test_parse_verdict_variants(v, expected):
+    from verilens.pipeline import parse_verdict
+
+    assert parse_verdict(v) == expected
+
+
+def test_single_bare_verdict_with_inner_list_is_not_misread():
+    """A one-candidate answer that contains a list field (e.g. exploit steps) must still be read."""
+    payload = {"id": 1, "verdict": "vulnerable", "confidence": 0.9, "exploit_steps": ["a", "b"]}
+    src = "pragma solidity ^0.8.0; contract C { function f(address payable a) public { a.send(1); } }"
+    res = analyze(src, "hybrid", ReplayClient(lambda s, p: json.dumps(payload)))
+    assert not res.errors and len(res.findings) == 1
+
+
+def test_missing_verdict_error_includes_raw_response():
+    res = analyze(VULN, "hybrid", ReplayClient(lambda s, p: '{"something": "else"}'))
+    assert any("something" in e for e in res.errors)
