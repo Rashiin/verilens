@@ -20,6 +20,8 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+from ..net import SSL_HINT, is_cert_error, urlopen
+
 
 class LLMError(RuntimeError):
     pass
@@ -87,6 +89,8 @@ class LLMClient:
                 time.sleep(float(retry_after) if retry_after and retry_after.isdigit() else delay)
                 delay = min(delay * 2, 60)
             except (urllib.error.URLError, TimeoutError) as e:
+                if is_cert_error(e):
+                    raise LLMError(f"{self.name}: {SSL_HINT}") from e
                 if attempt == self.max_retries:
                     raise LLMError(f"{self.name}: {e}") from e
                 time.sleep(delay)
@@ -100,7 +104,7 @@ class LLMClient:
             headers={"Content-Type": "application/json", **headers},
             method="POST",
         )
-        with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+        with urlopen(req, timeout=self.timeout) as resp:
             return json.loads(resp.read().decode())
 
 

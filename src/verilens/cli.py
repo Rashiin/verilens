@@ -125,7 +125,7 @@ def main(argv: list[str] | None = None) -> int:
         args.data = "data/smartbugs"
     try:
         return args.func(args)
-    except (LLMError, FileNotFoundError) as e:
+    except (LLMError, FileNotFoundError, ConnectionError) as e:
         print(f"error: {e}", file=sys.stderr)
         return 2
 

@@ -21,6 +21,7 @@ dependencies = []
 
 [project.optional-dependencies]
 demo = ["gradio>=4"]
+certs = ["certifi"]
 dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]

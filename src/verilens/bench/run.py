@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .. import __version__
-from ..llm.base import LLMClient
+from ..llm.base import LLMClient, LLMError
 from ..pipeline import analyze
 from ..taxonomy import CATEGORIES
 from .datasets import Sample
@@ -44,6 +44,10 @@ def run_benchmark(
         verified_out += sum(1 for f in res.candidates if f.verdict == "not_vulnerable")
         if res.errors:
             errors[s.path] = res.errors
+            # Verification fails open, which is right for one flaky call but would silently
+            # turn a whole run into "static" if the LLM is unreachable. Stop instead.
+            if llm and llm.calls + llm.cache_hits == 0 and len(errors) >= 3:
+                raise LLMError(f"no LLM call has succeeded; first error: {next(iter(errors.values()))[0]}")
         if progress and sys.stderr.isatty():
             print(f"\r[{i}/{len(samples)}] {s.path[:70]:<70}", end="", file=sys.stderr, flush=True)
     if progress and sys.stderr.isatty():

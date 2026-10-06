@@ -76,6 +76,7 @@ This is the headroom a verify-only approach can capture. The remaining SmartBugs
 LLM results depend on the model, so they are produced with your own key and written to `results/` alongside the static ones:
 
 ```bash
+pip install -e ".[certs]"          # certifi CA bundle; needed on macOS python.org installs
 export GEMINI_API_KEY=...          # free key: https://aistudio.google.com/apikey
 verilens bench --dataset pairs --mode hybrid --rpm 10
 verilens bench --dataset smartbugs --mode hybrid --rpm 10
@@ -87,7 +88,7 @@ Each report includes:
 
 * precision, recall and F1 at category and line level, plus per-category tables
 * the number of static candidates the LLM rejected
-* LLM errors (verification **fails open**, so an API error never hides a finding)
+* LLM errors (verification **fails open**, so an API error never hides a finding; a run where *no* LLM call succeeds aborts instead of masquerading as a hybrid result)
 * the cache hit count
 
 Runs with a local open-weight model work the same way: `--provider openai --base-url http://localhost:11434/v1 --model qwen2.5-coder:7b` (Ollama).
@@ -145,7 +146,7 @@ verilens bench --dataset pairs --mode static
 
 ```bash
 pip install -e ".[dev]"
-pytest                                   # 53 tests, offline, ~2 s
+pytest                                   # 55 tests, offline, ~2 s
 verilens fetch-smartbugs --dest data/smartbugs
 verilens bench --dataset smartbugs --mode static --out results
 verilens bench --dataset pairs --mode static --out results

@@ -77,3 +77,20 @@ def test_non_retryable_error_is_reported(server):
     c = GeminiClient(model="m", api_key="k", base_url=server["url"], max_retries=1)
     with pytest.raises(LLMError, match="429"):
         c.complete("s", "p")
+
+
+def test_certificate_errors_fail_fast_with_a_hint(monkeypatch):
+    import ssl
+    import urllib.error
+
+    attempts = []
+
+    def boom(*a, **k):
+        attempts.append(1)
+        raise urllib.error.URLError(ssl.SSLCertVerificationError("CERTIFICATE_VERIFY_FAILED"))
+
+    monkeypatch.setattr("verilens.llm.base.urlopen", boom)
+    c = GeminiClient(model="m", api_key="k")
+    with pytest.raises(LLMError, match="certifi"):
+        c.complete("s", "p")
+    assert len(attempts) == 1  # not retried

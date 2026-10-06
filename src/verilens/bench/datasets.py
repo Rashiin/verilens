@@ -16,10 +16,11 @@ numbers, so labels stay aligned and no evaluated mode sees them.
 from __future__ import annotations
 
 import json
-import urllib.request
+import urllib.error
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from ..net import SSL_HINT, is_cert_error, urlopen
 from ..solidity import strip_comments
 from ..taxonomy import normalize_category
 
@@ -86,8 +87,13 @@ def fetch_smartbugs(dest: str | Path, commit: str = SMARTBUGS_COMMIT, verbose: b
     base = f"https://raw.githubusercontent.com/{SMARTBUGS_REPO}/{commit}/"
 
     def get(rel: str) -> bytes:
-        with urllib.request.urlopen(base + rel, timeout=60) as r:
-            return r.read()
+        try:
+            with urlopen(base + rel, timeout=60) as r:
+                return r.read()
+        except urllib.error.URLError as e:
+            if is_cert_error(e):
+                raise ConnectionError(SSL_HINT) from e
+            raise
 
     dest.mkdir(parents=True, exist_ok=True)
     manifest = dest / "vulnerabilities.json"

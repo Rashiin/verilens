@@ -91,3 +91,16 @@ def test_label_annotations_are_not_shown_to_the_llm():
     src = "/* @vulnerable_at_lines: 4 */\npragma solidity ^0.4.24;\ncontract C { function f(address a) public {\n// <yes> <report> UNCHECKED_LL_CALLS\na.send(1); } }"
     analyze(sanitize(src), "hybrid", ReplayClient(lambda s, p: seen.append(p) or verdicts((1, "vulnerable", 1))))
     assert seen and all("<yes>" not in p and "vulnerable_at_lines" not in p for p in seen)
+
+
+def test_benchmark_aborts_when_llm_is_unreachable():
+    """A run where every LLM call fails must not be reported as a hybrid result."""
+    from verilens.bench.datasets import load_pairs
+    from verilens.bench.run import run_benchmark
+    from verilens.llm.base import LLMError
+
+    def down(s, p):
+        raise LLMError("connection refused")
+
+    with pytest.raises(LLMError, match="no LLM call has succeeded"):
+        run_benchmark(load_pairs(), "hybrid", "pairs", ReplayClient(down), progress=False)
