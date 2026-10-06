@@ -155,8 +155,16 @@ def test_partial_failures_mark_the_run_incomplete():
                 {"id": "#2", "verdict": "not_vulnerable", "confidence": 0.9},
             ]
         },
+        [
+            {
+                "verdicts": [
+                    {"id": 1, "verdict": "vulnerable", "confidence": 0.9},
+                    {"id": 2, "verdict": "not_vulnerable", "confidence": 0.9},
+                ]
+            }
+        ],
     ],
-    ids=["wrapped", "bare-list", "no-ids", "other-key-string-ids"],
+    ids=["wrapped", "bare-list", "no-ids", "other-key-string-ids", "wrapper-inside-list"],
 )
 def test_verifier_accepts_common_response_shapes(payload):
     res = analyze(VULN, "hybrid", ReplayClient(lambda s, p: json.dumps(payload)))

@@ -39,7 +39,12 @@ def _items(data: Any, keys: tuple[str, ...], item_keys: tuple[str, ...]) -> list
     """Accept the shapes models actually return: the requested wrapper object, a bare
     list, a different wrapper key, or a single bare item (recognised by ``item_keys``)."""
     if isinstance(data, list):
-        return data
+        # Some models wrap the requested object in a list: [{"verdicts": [...]}].
+        out: list = []
+        for el in data:
+            inner = isinstance(el, dict) and next((el[k] for k in keys if isinstance(el.get(k), list)), None)
+            out.extend(inner if inner is not None and inner is not False else [el])
+        return out
     if isinstance(data, dict):
         for k in keys:
             if isinstance(data.get(k), list):
