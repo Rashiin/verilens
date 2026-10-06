@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verilens"
+version = "0.1.0"
+description = "LLM-verified static analysis for Solidity smart contracts, with a reproducible benchmark."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Rashin Gholijani Farahani" }]
+keywords = ["solidity", "smart-contracts", "security", "llm", "static-analysis", "ethereum"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Security",
+  "Intended Audience :: Science/Research",
+]
+dependencies = []
+
+[project.optional-dependencies]
+demo = ["gradio>=4"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+verilens = "verilens.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Rashiin/verilens"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

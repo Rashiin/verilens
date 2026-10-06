@@ -1,0 +1,4374 @@
+{
+  "samples": 143,
+  "category_level_micro": {
+    "precision": 0.4604,
+    "recall": 0.8951,
+    "f1": 0.6081,
+    "tp": 128,
+    "fp": 150,
+    "fn": 15
+  },
+  "category_level_macro_f1": 0.4243,
+  "line_level_micro": {
+    "precision": 0.3354,
+    "recall": 0.7883,
+    "reported": 492,
+    "labelled": 222,
+    "tolerance": 2
+  },
+  "per_category": {
+    "access_control": {
+      "category_level": {
+        "precision": 0.5185,
+        "recall": 0.7778,
+        "f1": 0.6222,
+        "tp": 14,
+        "fp": 13,
+        "fn": 4
+      },
+      "line_level": {
+        "precision": 0.2821,
+        "recall": 0.5833,
+        "reported": 39,
+        "labelled": 24
+      }
+    },
+    "arithmetic": {
+      "category_level": {
+        "precision": 0.1923,
+        "recall": 1.0,
+        "f1": 0.3226,
+        "tp": 15,
+        "fp": 63,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.1058,
+        "recall": 0.913,
+        "reported": 189,
+        "labelled": 23
+      }
+    },
+    "bad_randomness": {
+      "category_level": {
+        "precision": 0.3889,
+        "recall": 0.875,
+        "f1": 0.5385,
+        "tp": 7,
+        "fp": 11,
+        "fn": 1
+      },
+      "line_level": {
+        "precision": 0.5263,
+        "recall": 0.7647,
+        "reported": 38,
+        "labelled": 34
+      }
+    },
+    "denial_of_service": {
+      "category_level": {
+        "precision": 0.2,
+        "recall": 0.8333,
+        "f1": 0.3226,
+        "tp": 5,
+        "fp": 20,
+        "fn": 1
+      },
+      "line_level": {
+        "precision": 0.1176,
+        "recall": 0.2857,
+        "reported": 34,
+        "labelled": 14
+      }
+    },
+    "front_running": {
+      "category_level": {
+        "precision": 0.2308,
+        "recall": 0.75,
+        "f1": 0.3529,
+        "tp": 3,
+        "fp": 10,
+        "fn": 1
+      },
+      "line_level": {
+        "precision": 0.2,
+        "recall": 0.4286,
+        "reported": 15,
+        "labelled": 7
+      }
+    },
+    "other": {
+      "category_level": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 3
+      },
+      "line_level": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "reported": 0,
+        "labelled": 5
+      }
+    },
+    "reentrancy": {
+      "category_level": {
+        "precision": 0.7179,
+        "recall": 0.9032,
+        "f1": 0.8,
+        "tp": 28,
+        "fp": 11,
+        "fn": 3
+      },
+      "line_level": {
+        "precision": 0.5957,
+        "recall": 0.875,
+        "reported": 47,
+        "labelled": 32
+      }
+    },
+    "short_addresses": {
+      "category_level": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "line_level": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "reported": 0,
+        "labelled": 1
+      }
+    },
+    "time_manipulation": {
+      "category_level": {
+        "precision": 0.2353,
+        "recall": 0.8,
+        "f1": 0.3636,
+        "tp": 4,
+        "fp": 13,
+        "fn": 1
+      },
+      "line_level": {
+        "precision": 0.129,
+        "recall": 0.5714,
+        "reported": 31,
+        "labelled": 7
+      }
+    },
+    "unchecked_low_level_calls": {
+      "category_level": {
+        "precision": 0.8525,
+        "recall": 1.0,
+        "f1": 0.9204,
+        "tp": 52,
+        "fp": 9,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.7576,
+        "recall": 1.0,
+        "reported": 99,
+        "labelled": 75
+      }
+    }
+  },
+  "config": {
+    "dataset": "smartbugs-curated",
+    "mode": "static",
+    "llm": null,
+    "threshold": null,
+    "verilens": "0.1.0",
+    "python": "3.13.16",
+    "date": "2026-10-06"
+  },
+  "runtime_seconds": 0.46,
+  "verification_upper_bound": {
+    "category_level_micro": {
+      "precision": 1.0,
+      "recall": 0.8392,
+      "f1": 0.9125,
+      "tp": 120,
+      "fp": 0,
+      "fn": 23
+    },
+    "line_level_micro": {
+      "precision": 1.0,
+      "recall": 0.7883,
+      "reported": 165,
+      "labelled": 222,
+      "tolerance": 2
+    }
+  },
+  "samples_with_errors": 0,
+  "errors": {},
+  "per_sample": [
+    {
+      "path": "dataset/access_control/FibonacciBalance.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          27,
+          "unchecked-compound-op"
+        ],
+        [
+          "access_control",
+          31,
+          "unprotected-delegatecall"
+        ],
+        [
+          "access_control",
+          38,
+          "unprotected-delegatecall"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/arbitrary_location_write_simple.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          28,
+          "array-length-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/incorrect_constructor_name1.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          23,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/incorrect_constructor_name2.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          18,
+          "misnamed-constructor"
+        ],
+        [
+          "access_control",
+          21,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/incorrect_constructor_name3.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          20,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/mapping_write.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          17,
+          "array-length-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/multiowned_vulnerable.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "dataset/access_control/mycontract.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          20,
+          "tx-origin-auth"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/parity_wallet_bug_1.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "bad_randomness",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          114,
+          "unprotected-privileged-write"
+        ],
+        [
+          "arithmetic",
+          114,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          134,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          245,
+          "state-write-after-call"
+        ],
+        [
+          "bad_randomness",
+          251,
+          "block-entropy"
+        ],
+        [
+          "reentrancy",
+          279,
+          "state-write-after-call"
+        ],
+        [
+          "access_control",
+          437,
+          "unprotected-delegatecall"
+        ],
+        [
+          "unchecked_low_level_calls",
+          437,
+          "unchecked-call"
+        ],
+        [
+          "access_control",
+          448,
+          "unprotected-delegatecall"
+        ],
+        [
+          "access_control",
+          452,
+          "unprotected-delegatecall"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/parity_wallet_bug_2.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "arithmetic",
+        "bad_randomness",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          114,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          134,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          249,
+          "state-write-after-call"
+        ],
+        [
+          "bad_randomness",
+          255,
+          "block-entropy"
+        ],
+        [
+          "reentrancy",
+          285,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/phishable.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          20,
+          "tx-origin-auth"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/proxy.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          19,
+          "unprotected-delegatecall"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/rubixi.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "denial_of_service",
+        "front_running",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          24,
+          "unprotected-privileged-write"
+        ],
+        [
+          "arithmetic",
+          47,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          68,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          69,
+          "unchecked-compound-op"
+        ],
+        [
+          "denial_of_service",
+          74,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          74,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          76,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          77,
+          "unchecked-compound-op"
+        ],
+        [
+          "front_running",
+          85,
+          "transaction-order-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          85,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          95,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          102,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          103,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          104,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/simple_suicide.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          13,
+          "unprotected-selfdestruct"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/unprotected0.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          28,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/wallet_02_refund_nosub.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "dataset/access_control/wallet_03_wrong_constructor.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          20,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/access_control/wallet_04_confused_sign.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          32,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/BECToken.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic",
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          139,
+          "erc20-approve-race"
+        ],
+        [
+          "arithmetic",
+          298,
+          "unchecked-binary-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/insecure_transfer.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          18,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_1.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          14,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_add.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          17,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_benign_1.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          17,
+          "unchecked-binary-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_mapping_sym_1.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_minimal.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          17,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_mul.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          17,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_multitx_multifunc_feasible.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          25,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/integer_overflow_multitx_onefunc_feasible.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          22,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/overflow_simple_add.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          14,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/overflow_single_tx.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          18,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          24,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          30,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          36,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          42,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          48,
+          "unchecked-binary-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/timelock.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          22,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          27,
+          "timestamp-dependence"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/token.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          22,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          23,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/arithmetic/tokensalechallenge.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          25,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/blackjack.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "arithmetic",
+        "bad_randomness"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          21,
+          "block-entropy"
+        ],
+        [
+          "arithmetic",
+          214,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          217,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          227,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          230,
+          "unchecked-binary-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/etheraffle.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "bad_randomness",
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          75,
+          "unchecked-binary-op"
+        ],
+        [
+          "access_control",
+          76,
+          "array-length-write"
+        ],
+        [
+          "bad_randomness",
+          99,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          103,
+          "block-entropy"
+        ],
+        [
+          "denial_of_service",
+          122,
+          "push-payment-revert"
+        ],
+        [
+          "denial_of_service",
+          132,
+          "push-in-loop"
+        ],
+        [
+          "denial_of_service",
+          150,
+          "call-in-loop"
+        ],
+        [
+          "access_control",
+          159,
+          "array-length-write"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/guess_the_random_number.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "bad_randomness"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          15,
+          "block-entropy"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/lottery.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          57,
+          "unbounded-loop"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/lucky_doubler.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "bad_randomness",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          60,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          74,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          92,
+          "unchecked-compound-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          102,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          106,
+          "unchecked-compound-op"
+        ],
+        [
+          "access_control",
+          111,
+          "array-length-write"
+        ],
+        [
+          "arithmetic",
+          116,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          119,
+          "unchecked-call"
+        ],
+        [
+          "bad_randomness",
+          130,
+          "block-entropy"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/old_blockhash.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "bad_randomness"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          35,
+          "block-entropy"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/random_number_generator.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "bad_randomness"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          20,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          22,
+          "block-entropy"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/bad_randomness/smart_billions.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "bad_randomness",
+        "denial_of_service",
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          101,
+          "erc20-approve-race"
+        ],
+        [
+          "arithmetic",
+          364,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          379,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          380,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          404,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          410,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          413,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          414,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          416,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          417,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          418,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          442,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          443,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          474,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          475,
+          "unchecked-compound-op"
+        ],
+        [
+          "bad_randomness",
+          523,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          560,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          618,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          626,
+          "block-entropy"
+        ],
+        [
+          "arithmetic",
+          639,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          643,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          644,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          656,
+          "unchecked-compound-op"
+        ],
+        [
+          "access_control",
+          676,
+          "array-length-write"
+        ],
+        [
+          "access_control",
+          679,
+          "array-length-write"
+        ],
+        [
+          "arithmetic",
+          679,
+          "unchecked-compound-op"
+        ],
+        [
+          "denial_of_service",
+          681,
+          "unbounded-loop"
+        ],
+        [
+          "bad_randomness",
+          700,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          702,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          704,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          706,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          708,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          710,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          712,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          714,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          716,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          718,
+          "block-entropy"
+        ],
+        [
+          "arithmetic",
+          752,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          754,
+          "unchecked-binary-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/denial_of_service/auction.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          23,
+          "push-payment-revert"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/denial_of_service/dos_address.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          24,
+          "push-in-loop"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/denial_of_service/dos_number.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "access_control",
+          20,
+          "array-length-write"
+        ],
+        [
+          "arithmetic",
+          20,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/denial_of_service/dos_simple.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          18,
+          "push-in-loop"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/denial_of_service/list_dos.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "arithmetic",
+        "denial_of_service",
+        "front_running",
+        "time_manipulation",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "time_manipulation",
+          35,
+          "timestamp-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          37,
+          "unchecked-call"
+        ],
+        [
+          "front_running",
+          39,
+          "transaction-order-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          39,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          40,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          49,
+          "unchecked-compound-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          62,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          65,
+          "unchecked-compound-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          70,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          72,
+          "unchecked-compound-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          75,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          77,
+          "unchecked-compound-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          82,
+          "unchecked-call"
+        ],
+        [
+          "denial_of_service",
+          94,
+          "unbounded-loop"
+        ],
+        [
+          "arithmetic",
+          107,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/denial_of_service/send_loop.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          22,
+          "unbounded-loop"
+        ],
+        [
+          "denial_of_service",
+          24,
+          "call-in-loop"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/front_running/ERC20.sol",
+      "gold": [
+        "front_running"
+      ],
+      "pred": [
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          113,
+          "erc20-approve-race"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/front_running/FindThisHash.sol",
+      "gold": [
+        "front_running"
+      ],
+      "pred": [
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          17,
+          "public-solution"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/front_running/eth_tx_order_dependence_minimal.sol",
+      "gold": [
+        "front_running"
+      ],
+      "pred": [
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          31,
+          "transaction-order-dependence"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/front_running/odds_and_evens.sol",
+      "gold": [
+        "front_running"
+      ],
+      "pred": [
+        "arithmetic",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          36,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          41,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          50,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/other/crypto_roulette.sol",
+      "gold": [
+        "other"
+      ],
+      "pred": [
+        "bad_randomness",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          34,
+          "block-entropy"
+        ],
+        [
+          "time_manipulation",
+          55,
+          "timestamp-dependence"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/other/name_registrar.sol",
+      "gold": [
+        "other"
+      ],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "dataset/other/open_address_lottery.sol",
+      "gold": [
+        "other"
+      ],
+      "pred": [
+        "bad_randomness"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          43,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          64,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          79,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          93,
+          "block-entropy"
+        ],
+        [
+          "bad_randomness",
+          94,
+          "block-entropy"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          43,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          54,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          28,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          38,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          44,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          55,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x4e73b32ed6c35f570686b89848e5f39f20ecc106.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          43,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          54,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x561eac93c92360949ab1f1403323e6db345cbf31.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          43,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          54,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          43,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          71,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          94,
+          "state-write-after-call"
+        ],
+        [
+          "arithmetic",
+          96,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x7541b76cb60f4c60af330c208b0623b7f54bf615.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          17,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          26,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          29,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x7a8721a9d64c74da899424c1b52acbf58ddc9782.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "access_control",
+          19,
+          "tx-origin-auth"
+        ],
+        [
+          "arithmetic",
+          42,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          52,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          17,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          26,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          29,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x8c7777c45481dba411450c228cb692ac3d550344.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          29,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          41,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x93c32845fae42c83a70e5f06214c8433665c2ab5.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          17,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          26,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          29,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x941d225236464a25eb18076df7da6a91d0f95e9e.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          31,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          44,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          50,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          51,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          60,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          63,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          43,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          54,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          28,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          40,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          28,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          38,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          29,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          41,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          50,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          51,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          60,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          63,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0xcead721ef5b11f1a7b530171aab69b16c5e66b6e.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          17,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          26,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          29,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/0xf015c35649c82f5467c9c74b7f28ee67665aad68.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          17,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          26,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          29,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/etherbank.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          15,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          21,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/etherstore.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          17,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          25,
+          "timestamp-dependence"
+        ],
+        [
+          "reentrancy",
+          27,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/modifier_reentrancy.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/reentrance.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          14,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          24,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/reentrancy_bonus.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          26,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/reentrancy_cross_function.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          24,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/reentrancy_dao.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          18,
+          "state-write-after-call"
+        ],
+        [
+          "arithmetic",
+          25,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          26,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/reentrancy_insecure.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "reentrancy",
+          17,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/reentrancy_simple.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          17,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          24,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/simple_dao.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          13,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          19,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          19,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/reentrancy/spank_chain_payment.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "arithmetic",
+        "denial_of_service",
+        "front_running",
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          189,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          198,
+          "unchecked-compound-op"
+        ],
+        [
+          "front_running",
+          210,
+          "erc20-approve-race"
+        ],
+        [
+          "time_manipulation",
+          422,
+          "timestamp-dependence"
+        ],
+        [
+          "denial_of_service",
+          426,
+          "push-payment-revert"
+        ],
+        [
+          "denial_of_service",
+          430,
+          "push-payment-revert"
+        ],
+        [
+          "arithmetic",
+          453,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          454,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          474,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          477,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          484,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          487,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          507,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          508,
+          "unchecked-binary-op"
+        ],
+        [
+          "front_running",
+          512,
+          "public-solution"
+        ],
+        [
+          "denial_of_service",
+          534,
+          "push-payment-revert"
+        ],
+        [
+          "denial_of_service",
+          535,
+          "push-payment-revert"
+        ],
+        [
+          "denial_of_service",
+          539,
+          "push-payment-revert"
+        ],
+        [
+          "denial_of_service",
+          540,
+          "push-payment-revert"
+        ],
+        [
+          "time_manipulation",
+          566,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          631,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          689,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          729,
+          "timestamp-dependence"
+        ],
+        [
+          "arithmetic",
+          738,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          739,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          741,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          742,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          744,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          745,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          747,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          748,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          763,
+          "timestamp-dependence"
+        ],
+        [
+          "arithmetic",
+          773,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          774,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          780,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          781,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/short_addresses/short_address_example.sol",
+      "gold": [
+        "short_addresses"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          21,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/time_manipulation/ether_lotto.sol",
+      "gold": [
+        "time_manipulation"
+      ],
+      "pred": [
+        "arithmetic",
+        "bad_randomness",
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          39,
+          "unchecked-compound-op"
+        ],
+        [
+          "bad_randomness",
+          43,
+          "block-entropy"
+        ],
+        [
+          "denial_of_service",
+          49,
+          "push-payment-revert"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/time_manipulation/governmental_survey.sol",
+      "gold": [
+        "time_manipulation"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "front_running",
+        "time_manipulation",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          25,
+          "unchecked-compound-op"
+        ],
+        [
+          "time_manipulation",
+          31,
+          "timestamp-dependence"
+        ],
+        [
+          "front_running",
+          34,
+          "transaction-order-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          34,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          35,
+          "unchecked-call"
+        ],
+        [
+          "access_control",
+          45,
+          "misnamed-constructor"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/time_manipulation/lottopollo.sol",
+      "gold": [
+        "time_manipulation"
+      ],
+      "pred": [
+        "time_manipulation",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "time_manipulation",
+          13,
+          "timestamp-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          14,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          17,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/time_manipulation/roulette.sol",
+      "gold": [
+        "time_manipulation"
+      ],
+      "pred": [
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "time_manipulation",
+          18,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          21,
+          "timestamp-dependence"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/time_manipulation/timed_crowdsale.sol",
+      "gold": [
+        "time_manipulation"
+      ],
+      "pred": [
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "time_manipulation",
+          13,
+          "timestamp-dependence"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "bad_randomness",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          30,
+          "tx-origin-auth"
+        ],
+        [
+          "arithmetic",
+          153,
+          "unchecked-binary-op"
+        ],
+        [
+          "bad_randomness",
+          153,
+          "block-entropy"
+        ],
+        [
+          "reentrancy",
+          201,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          201,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          202,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          213,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          213,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          214,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          12,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x19cf8481ea15427a98ba3cdd6d9e14690011ab10.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "front_running",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "front_running",
+          136,
+          "erc20-approve-race"
+        ],
+        [
+          "arithmetic",
+          262,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          280,
+          "unchecked-compound-op"
+        ],
+        [
+          "front_running",
+          315,
+          "erc20-approve-race"
+        ],
+        [
+          "arithmetic",
+          329,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          405,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          406,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          409,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          410,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          418,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          420,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          427,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          439,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          465,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          477,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          478,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          492,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x2972d548497286d18e92b5fa1f8f9139e5653fd2.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          14,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          14,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x39cfd754c85023648bf003bea2dd498c5612abfa.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          72,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          97,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          97,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          72,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          97,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          97,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          29,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          45,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x4051334adc52057aca763453820cb0e045076ef3.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          16,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          16,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          19,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          19,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          17,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          17,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x524960d55174d912768678d8c606b4d50b79d7b1.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          21,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x52d2e0f9b01101a59b38a3d05c80b7618aeed984.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          27,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          27,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x5aa88d2901c68fda244f1d0584400368d2c8e739.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          29,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x610495793564aed0f9c7fc48dc4c7c9151d34fd6.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          33,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          72,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          94,
+          "state-write-after-call"
+        ],
+        [
+          "arithmetic",
+          96,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x663e4229142a27f00bafb5d087e1e730648314c3.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "bad_randomness",
+        "denial_of_service",
+        "front_running",
+        "time_manipulation",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          465,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          484,
+          "unchecked-binary-op"
+        ],
+        [
+          "bad_randomness",
+          1131,
+          "block-entropy"
+        ],
+        [
+          "time_manipulation",
+          1131,
+          "timestamp-dependence"
+        ],
+        [
+          "front_running",
+          1152,
+          "transaction-order-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          1152,
+          "unchecked-call"
+        ],
+        [
+          "denial_of_service",
+          1223,
+          "push-payment-revert"
+        ],
+        [
+          "time_manipulation",
+          1343,
+          "timestamp-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          1496,
+          "unchecked-call"
+        ],
+        [
+          "bad_randomness",
+          1808,
+          "block-entropy"
+        ],
+        [
+          "arithmetic",
+          2008,
+          "unchecked-compound-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          2467,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          29,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          45,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x7a4349a749e59a5736efb7826ee3496a2dfd5489.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x7d09edb07d23acb532a82be3da5c17d9d85806b4.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "bad_randomness",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          30,
+          "tx-origin-auth"
+        ],
+        [
+          "arithmetic",
+          150,
+          "unchecked-binary-op"
+        ],
+        [
+          "bad_randomness",
+          150,
+          "block-entropy"
+        ],
+        [
+          "reentrancy",
+          198,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          198,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          199,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          210,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          210,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          211,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x806a6bd219f162442d992bdc4ee6eba1f2c5a707.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          56,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x89c1b3807d4c67df034fffb62f3509561218d30b.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "front_running",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          74,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          75,
+          "unchecked-binary-op"
+        ],
+        [
+          "reentrancy",
+          107,
+          "state-write-after-call"
+        ],
+        [
+          "reentrancy",
+          118,
+          "state-write-after-call"
+        ],
+        [
+          "front_running",
+          162,
+          "transaction-order-dependence"
+        ],
+        [
+          "unchecked_low_level_calls",
+          162,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          175,
+          "unchecked-call"
+        ],
+        [
+          "reentrancy",
+          180,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          180,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          184,
+          "unchecked-binary-op"
+        ],
+        [
+          "reentrancy",
+          192,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          192,
+          "unchecked-call"
+        ],
+        [
+          "reentrancy",
+          211,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x8fd1e427396ddb511533cf9abdbebd0a7e08da35.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          72,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          97,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          97,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x958a8f594101d2c0485a52319f29b2647f2ebc06.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          55,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0x9d06cbafa865037a01d322d3f4222fa3e04e5488.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          44,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          54,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          65,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xa1fceeff3acc57d257b917e30c4df661401d6431.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          31,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          31,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xa46edd6a9a93feec36576ee5048146870ea2c3ae.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          16,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          16,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          69,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          71,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          73,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          75,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          102,
+          "unchecked-call"
+        ],
+        [
+          "denial_of_service",
+          109,
+          "push-payment-revert"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          12,
+          "misnamed-constructor"
+        ],
+        [
+          "unchecked_low_level_calls",
+          14,
+          "unchecked-call"
+        ],
+        [
+          "access_control",
+          25,
+          "tx-origin-auth"
+        ],
+        [
+          "arithmetic",
+          33,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xb37f18af15bafb869a065b61fc83cfc44ed9cc27.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          33,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xb620cee6b52f96f3c6b253e6eea556aa2d214a99.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "access_control",
+        "bad_randomness",
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          32,
+          "misnamed-constructor"
+        ],
+        [
+          "access_control",
+          33,
+          "unprotected-privileged-write"
+        ],
+        [
+          "bad_randomness",
+          86,
+          "block-entropy"
+        ],
+        [
+          "unchecked_low_level_calls",
+          100,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          106,
+          "unchecked-call"
+        ],
+        [
+          "access_control",
+          114,
+          "array-length-write"
+        ],
+        [
+          "unchecked_low_level_calls",
+          133,
+          "unchecked-call"
+        ],
+        [
+          "denial_of_service",
+          137,
+          "push-payment-revert"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          20,
+          "unchecked-compound-op"
+        ],
+        [
+          "reentrancy",
+          25,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          25,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xbaa3de6504690efb064420d89e871c27065cdd52.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          12,
+          "misnamed-constructor"
+        ],
+        [
+          "unchecked_low_level_calls",
+          14,
+          "unchecked-call"
+        ],
+        [
+          "access_control",
+          25,
+          "tx-origin-auth"
+        ],
+        [
+          "arithmetic",
+          33,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "access_control",
+          12,
+          "misnamed-constructor"
+        ],
+        [
+          "unchecked_low_level_calls",
+          14,
+          "unchecked-call"
+        ],
+        [
+          "access_control",
+          25,
+          "tx-origin-auth"
+        ],
+        [
+          "arithmetic",
+          33,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xd2018bfaa266a9ec0a1a84b061640faa009def76.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xd5967fed03e85d1cce44cab284695b41bc675b5c.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          16,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          16,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xdb1c55f6926e7d847ddf8678905ad871a68199d2.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          39,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xe09b1ab8111c2729a76f16de96bc86a7af837928.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "bad_randomness",
+        "front_running",
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "front_running",
+          141,
+          "public-solution"
+        ],
+        [
+          "arithmetic",
+          144,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          145,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          146,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          148,
+          "unchecked-binary-op"
+        ],
+        [
+          "reentrancy",
+          150,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          150,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          151,
+          "unchecked-compound-op"
+        ],
+        [
+          "bad_randomness",
+          173,
+          "block-entropy"
+        ],
+        [
+          "arithmetic",
+          177,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          200,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          213,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          315,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          316,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xe4eabdca81e31d9acbc4af76b30f532b6ed7f3bf.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xe82f0742a71a02b9e9ffc142fdcb6eb1ed06fb87.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          39,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xe894d54dca59cb53fe9cbc5155093605c7068220.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          17,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          17,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xec329ffc97d75fe03428ae155fc7793431487f63.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "access_control",
+        "arithmetic",
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          30,
+          "unchecked-call"
+        ],
+        [
+          "access_control",
+          73,
+          "array-length-write"
+        ],
+        [
+          "arithmetic",
+          75,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          82,
+          "unchecked-compound-op"
+        ],
+        [
+          "denial_of_service",
+          98,
+          "unbounded-loop"
+        ],
+        [
+          "denial_of_service",
+          102,
+          "call-in-loop"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xf2570186500a46986f3139f65afedc2afe4f445d.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "denial_of_service",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          18,
+          "call-in-loop"
+        ],
+        [
+          "unchecked_low_level_calls",
+          18,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xf29ebe930a539a60279ace72c707cba851a57707.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          16,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          44,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/etherpot_lotto.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "bad_randomness",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          109,
+          "unchecked-call"
+        ],
+        [
+          "bad_randomness",
+          116,
+          "block-entropy"
+        ],
+        [
+          "arithmetic",
+          135,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          141,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          146,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          153,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          154,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          157,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/king_of_the_ether_throne.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "arithmetic",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          110,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          116,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          118,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          126,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          132,
+          "unchecked-call"
+        ],
+        [
+          "arithmetic",
+          148,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          152,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          154,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          156,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          158,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          160,
+          "unchecked-binary-op"
+        ],
+        [
+          "arithmetic",
+          162,
+          "unchecked-binary-op"
+        ],
+        [
+          "unchecked_low_level_calls",
+          174,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/lotto.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          20,
+          "unchecked-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          27,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/mishandled.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          14,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "dataset/unchecked_low_level_calls/unchecked_return_value.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          17,
+          "unchecked-call"
+        ]
+      ]
+    }
+  ]
+}

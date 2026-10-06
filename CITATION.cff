@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software or the contrastive-pairs benchmark, please cite it."
+title: "verilens: LLM-verified static analysis for Solidity smart contracts"
+authors:
+  - family-names: "Gholijani Farahani"
+    given-names: "Rashin"
+version: 0.1.0
+date-released: 2026-10-06
+license: MIT
+repository-code: "https://github.com/Rashiin/verilens"
+keywords: [smart contracts, solidity, static analysis, large language models, software security]

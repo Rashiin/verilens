@@ -1,0 +1,376 @@
+[
+  {
+    "name": "admin_registry_vuln.sol",
+    "path": "access_control/admin_registry_vuln.sol",
+    "pair": "access_control/admin_registry",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "access_control",
+        "lines": [
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin_registry_safe.sol",
+    "path": "access_control/admin_registry_safe.sol",
+    "pair": "access_control/admin_registry",
+    "safe": true,
+    "fixed_category": "access_control",
+    "vulnerabilities": []
+  },
+  {
+    "name": "closable_vuln.sol",
+    "path": "access_control/closable_vuln.sol",
+    "pair": "access_control/closable",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "access_control",
+        "lines": [
+          12
+        ]
+      }
+    ]
+  },
+  {
+    "name": "closable_safe.sol",
+    "path": "access_control/closable_safe.sol",
+    "pair": "access_control/closable",
+    "safe": true,
+    "fixed_category": "access_control",
+    "vulnerabilities": []
+  },
+  {
+    "name": "owned_wallet_vuln.sol",
+    "path": "access_control/owned_wallet_vuln.sol",
+    "pair": "access_control/owned_wallet",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "access_control",
+        "lines": [
+          6
+        ]
+      }
+    ]
+  },
+  {
+    "name": "owned_wallet_safe.sol",
+    "path": "access_control/owned_wallet_safe.sol",
+    "pair": "access_control/owned_wallet",
+    "safe": true,
+    "fixed_category": "access_control",
+    "vulnerabilities": []
+  },
+  {
+    "name": "tx_origin_wallet_vuln.sol",
+    "path": "access_control/tx_origin_wallet_vuln.sol",
+    "pair": "access_control/tx_origin_wallet",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "access_control",
+        "lines": [
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "name": "tx_origin_wallet_safe.sol",
+    "path": "access_control/tx_origin_wallet_safe.sol",
+    "pair": "access_control/tx_origin_wallet",
+    "safe": true,
+    "fixed_category": "access_control",
+    "vulnerabilities": []
+  },
+  {
+    "name": "token_vuln.sol",
+    "path": "arithmetic/token_vuln.sol",
+    "pair": "arithmetic/token",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "arithmetic",
+        "lines": [
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "name": "token_safe.sol",
+    "path": "arithmetic/token_safe.sol",
+    "pair": "arithmetic/token",
+    "safe": true,
+    "fixed_category": "arithmetic",
+    "vulnerabilities": []
+  },
+  {
+    "name": "unchecked_points_vuln.sol",
+    "path": "arithmetic/unchecked_points_vuln.sol",
+    "pair": "arithmetic/unchecked_points",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "arithmetic",
+        "lines": [
+          19
+        ]
+      }
+    ]
+  },
+  {
+    "name": "unchecked_points_safe.sol",
+    "path": "arithmetic/unchecked_points_safe.sol",
+    "pair": "arithmetic/unchecked_points",
+    "safe": true,
+    "fixed_category": "arithmetic",
+    "vulnerabilities": []
+  },
+  {
+    "name": "coin_flip_vuln.sol",
+    "path": "bad_randomness/coin_flip_vuln.sol",
+    "pair": "bad_randomness/coin_flip",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "bad_randomness",
+        "lines": [
+          11
+        ]
+      }
+    ]
+  },
+  {
+    "name": "coin_flip_safe.sol",
+    "path": "bad_randomness/coin_flip_safe.sol",
+    "pair": "bad_randomness/coin_flip",
+    "safe": true,
+    "fixed_category": "bad_randomness",
+    "vulnerabilities": []
+  },
+  {
+    "name": "raffle_vuln.sol",
+    "path": "bad_randomness/raffle_vuln.sol",
+    "pair": "bad_randomness/raffle",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "bad_randomness",
+        "lines": [
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "name": "raffle_safe.sol",
+    "path": "bad_randomness/raffle_safe.sol",
+    "pair": "bad_randomness/raffle",
+    "safe": true,
+    "fixed_category": "bad_randomness",
+    "vulnerabilities": []
+  },
+  {
+    "name": "king_auction_vuln.sol",
+    "path": "denial_of_service/king_auction_vuln.sol",
+    "pair": "denial_of_service/king_auction",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "denial_of_service",
+        "lines": [
+          11
+        ]
+      }
+    ]
+  },
+  {
+    "name": "king_auction_safe.sol",
+    "path": "denial_of_service/king_auction_safe.sol",
+    "pair": "denial_of_service/king_auction",
+    "safe": true,
+    "fixed_category": "denial_of_service",
+    "vulnerabilities": []
+  },
+  {
+    "name": "refund_all_vuln.sol",
+    "path": "denial_of_service/refund_all_vuln.sol",
+    "pair": "denial_of_service/refund_all",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "denial_of_service",
+        "lines": [
+          32
+        ]
+      }
+    ]
+  },
+  {
+    "name": "refund_all_safe.sol",
+    "path": "denial_of_service/refund_all_safe.sol",
+    "pair": "denial_of_service/refund_all",
+    "safe": true,
+    "fixed_category": "denial_of_service",
+    "vulnerabilities": []
+  },
+  {
+    "name": "approve_token_vuln.sol",
+    "path": "front_running/approve_token_vuln.sol",
+    "pair": "front_running/approve_token",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "front_running",
+        "lines": [
+          19
+        ]
+      }
+    ]
+  },
+  {
+    "name": "approve_token_safe.sol",
+    "path": "front_running/approve_token_safe.sol",
+    "pair": "front_running/approve_token",
+    "safe": true,
+    "fixed_category": "front_running",
+    "vulnerabilities": []
+  },
+  {
+    "name": "hash_puzzle_vuln.sol",
+    "path": "front_running/hash_puzzle_vuln.sol",
+    "pair": "front_running/hash_puzzle",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "front_running",
+        "lines": [
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "name": "hash_puzzle_safe.sol",
+    "path": "front_running/hash_puzzle_safe.sol",
+    "pair": "front_running/hash_puzzle",
+    "safe": true,
+    "fixed_category": "front_running",
+    "vulnerabilities": []
+  },
+  {
+    "name": "ether_bank_vuln.sol",
+    "path": "reentrancy/ether_bank_vuln.sol",
+    "pair": "reentrancy/ether_bank",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "reentrancy",
+        "lines": [
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ether_bank_safe.sol",
+    "path": "reentrancy/ether_bank_safe.sol",
+    "pair": "reentrancy/ether_bank",
+    "safe": true,
+    "fixed_category": "reentrancy",
+    "vulnerabilities": []
+  },
+  {
+    "name": "guarded_vault_vuln.sol",
+    "path": "reentrancy/guarded_vault_vuln.sol",
+    "pair": "reentrancy/guarded_vault",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "reentrancy",
+        "lines": [
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "name": "guarded_vault_safe.sol",
+    "path": "reentrancy/guarded_vault_safe.sol",
+    "pair": "reentrancy/guarded_vault",
+    "safe": true,
+    "fixed_category": "reentrancy",
+    "vulnerabilities": []
+  },
+  {
+    "name": "bonus_sale_vuln.sol",
+    "path": "time_manipulation/bonus_sale_vuln.sol",
+    "pair": "time_manipulation/bonus_sale",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "time_manipulation",
+        "lines": [
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "name": "bonus_sale_safe.sol",
+    "path": "time_manipulation/bonus_sale_safe.sol",
+    "pair": "time_manipulation/bonus_sale",
+    "safe": true,
+    "fixed_category": "time_manipulation",
+    "vulnerabilities": []
+  },
+  {
+    "name": "forwarder_vuln.sol",
+    "path": "unchecked_low_level_calls/forwarder_vuln.sol",
+    "pair": "unchecked_low_level_calls/forwarder",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "unchecked_low_level_calls",
+        "lines": [
+          14
+        ]
+      }
+    ]
+  },
+  {
+    "name": "forwarder_safe.sol",
+    "path": "unchecked_low_level_calls/forwarder_safe.sol",
+    "pair": "unchecked_low_level_calls/forwarder",
+    "safe": true,
+    "fixed_category": "unchecked_low_level_calls",
+    "vulnerabilities": []
+  },
+  {
+    "name": "prize_payout_vuln.sol",
+    "path": "unchecked_low_level_calls/prize_payout_vuln.sol",
+    "pair": "unchecked_low_level_calls/prize_payout",
+    "safe": false,
+    "vulnerabilities": [
+      {
+        "category": "unchecked_low_level_calls",
+        "lines": [
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "name": "prize_payout_safe.sol",
+    "path": "unchecked_low_level_calls/prize_payout_safe.sol",
+    "pair": "unchecked_low_level_calls/prize_payout",
+    "safe": true,
+    "fixed_category": "unchecked_low_level_calls",
+    "vulnerabilities": []
+  }
+]

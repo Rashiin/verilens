@@ -1,0 +1,639 @@
+{
+  "samples": 34,
+  "category_level_micro": {
+    "precision": 0.68,
+    "recall": 1.0,
+    "f1": 0.8095,
+    "tp": 17,
+    "fp": 8,
+    "fn": 0
+  },
+  "category_level_macro_f1": 0.8159,
+  "line_level_micro": {
+    "precision": 0.6897,
+    "recall": 1.0,
+    "reported": 29,
+    "labelled": 17,
+    "tolerance": 2
+  },
+  "per_category": {
+    "access_control": {
+      "category_level": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8889,
+        "tp": 4,
+        "fp": 1,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.8333,
+        "recall": 1.0,
+        "reported": 6,
+        "labelled": 4
+      }
+    },
+    "arithmetic": {
+      "category_level": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": 2,
+        "fp": 1,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "reported": 4,
+        "labelled": 2
+      }
+    },
+    "bad_randomness": {
+      "category_level": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "reported": 2,
+        "labelled": 2
+      }
+    },
+    "denial_of_service": {
+      "category_level": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": 2,
+        "fp": 1,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "reported": 4,
+        "labelled": 2
+      }
+    },
+    "front_running": {
+      "category_level": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": 2,
+        "fp": 1,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "reported": 3,
+        "labelled": 2
+      }
+    },
+    "reentrancy": {
+      "category_level": {
+        "precision": 0.4,
+        "recall": 1.0,
+        "f1": 0.5714,
+        "tp": 2,
+        "fp": 3,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.4,
+        "recall": 1.0,
+        "reported": 5,
+        "labelled": 2
+      }
+    },
+    "time_manipulation": {
+      "category_level": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "reported": 3,
+        "labelled": 1
+      }
+    },
+    "unchecked_low_level_calls": {
+      "category_level": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "line_level": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "reported": 2,
+        "labelled": 2
+      }
+    }
+  },
+  "safe_twin_false_alarm_rate": 0.2941,
+  "safe_twins": 17,
+  "config": {
+    "dataset": "contrastive-pairs",
+    "mode": "static",
+    "llm": null,
+    "threshold": null,
+    "verilens": "0.1.0",
+    "python": "3.13.16",
+    "date": "2026-10-06"
+  },
+  "runtime_seconds": 0.03,
+  "verification_upper_bound": {
+    "category_level_micro": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 17,
+      "fp": 0,
+      "fn": 0
+    },
+    "line_level_micro": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "reported": 20,
+      "labelled": 17,
+      "tolerance": 2
+    },
+    "safe_twin_false_alarm_rate": 0.0
+  },
+  "samples_with_errors": 0,
+  "errors": {},
+  "per_sample": [
+    {
+      "path": "access_control/admin_registry_vuln.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          22,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "access_control/admin_registry_safe.sol",
+      "gold": [],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          23,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "access_control/closable_vuln.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          12,
+          "unprotected-selfdestruct"
+        ]
+      ]
+    },
+    {
+      "path": "access_control/closable_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "access_control/owned_wallet_vuln.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          6,
+          "misnamed-constructor"
+        ],
+        [
+          "access_control",
+          7,
+          "unprotected-privileged-write"
+        ]
+      ]
+    },
+    {
+      "path": "access_control/owned_wallet_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "access_control/tx_origin_wallet_vuln.sol",
+      "gold": [
+        "access_control"
+      ],
+      "pred": [
+        "access_control"
+      ],
+      "findings": [
+        [
+          "access_control",
+          14,
+          "tx-origin-auth"
+        ]
+      ]
+    },
+    {
+      "path": "access_control/tx_origin_wallet_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "arithmetic/token_vuln.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          14,
+          "unchecked-compound-op"
+        ],
+        [
+          "arithmetic",
+          15,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "arithmetic/token_safe.sol",
+      "gold": [],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          16,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "arithmetic/unchecked_points_vuln.sol",
+      "gold": [
+        "arithmetic"
+      ],
+      "pred": [
+        "arithmetic"
+      ],
+      "findings": [
+        [
+          "arithmetic",
+          19,
+          "unchecked-compound-op"
+        ]
+      ]
+    },
+    {
+      "path": "arithmetic/unchecked_points_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "bad_randomness/coin_flip_vuln.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "bad_randomness"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          11,
+          "block-entropy"
+        ]
+      ]
+    },
+    {
+      "path": "bad_randomness/coin_flip_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "bad_randomness/raffle_vuln.sol",
+      "gold": [
+        "bad_randomness"
+      ],
+      "pred": [
+        "bad_randomness"
+      ],
+      "findings": [
+        [
+          "bad_randomness",
+          15,
+          "block-entropy"
+        ]
+      ]
+    },
+    {
+      "path": "bad_randomness/raffle_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "denial_of_service/king_auction_vuln.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          11,
+          "push-payment-revert"
+        ]
+      ]
+    },
+    {
+      "path": "denial_of_service/king_auction_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "denial_of_service/refund_all_vuln.sol",
+      "gold": [
+        "denial_of_service"
+      ],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          28,
+          "unbounded-loop"
+        ],
+        [
+          "denial_of_service",
+          32,
+          "call-in-loop"
+        ]
+      ]
+    },
+    {
+      "path": "denial_of_service/refund_all_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "front_running/approve_token_vuln.sol",
+      "gold": [
+        "front_running"
+      ],
+      "pred": [
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          19,
+          "erc20-approve-race"
+        ]
+      ]
+    },
+    {
+      "path": "front_running/approve_token_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "front_running/hash_puzzle_vuln.sol",
+      "gold": [
+        "front_running"
+      ],
+      "pred": [
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          14,
+          "public-solution"
+        ]
+      ]
+    },
+    {
+      "path": "front_running/hash_puzzle_safe.sol",
+      "gold": [],
+      "pred": [
+        "front_running"
+      ],
+      "findings": [
+        [
+          "front_running",
+          22,
+          "public-solution"
+        ]
+      ]
+    },
+    {
+      "path": "reentrancy/ether_bank_vuln.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "reentrancy",
+          14,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "reentrancy/ether_bank_safe.sol",
+      "gold": [],
+      "pred": [],
+      "findings": []
+    },
+    {
+      "path": "reentrancy/guarded_vault_vuln.sol",
+      "gold": [
+        "reentrancy"
+      ],
+      "pred": [
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "reentrancy",
+          15,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "reentrancy/guarded_vault_safe.sol",
+      "gold": [],
+      "pred": [
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "reentrancy",
+          23,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "time_manipulation/bonus_sale_vuln.sol",
+      "gold": [
+        "time_manipulation"
+      ],
+      "pred": [
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "time_manipulation",
+          13,
+          "timestamp-dependence"
+        ],
+        [
+          "time_manipulation",
+          15,
+          "timestamp-dependence"
+        ]
+      ]
+    },
+    {
+      "path": "time_manipulation/bonus_sale_safe.sol",
+      "gold": [],
+      "pred": [
+        "time_manipulation"
+      ],
+      "findings": [
+        [
+          "time_manipulation",
+          13,
+          "timestamp-dependence"
+        ]
+      ]
+    },
+    {
+      "path": "unchecked_low_level_calls/forwarder_vuln.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "reentrancy",
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "reentrancy",
+          14,
+          "state-write-after-call"
+        ],
+        [
+          "unchecked_low_level_calls",
+          14,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "unchecked_low_level_calls/forwarder_safe.sol",
+      "gold": [],
+      "pred": [
+        "reentrancy"
+      ],
+      "findings": [
+        [
+          "reentrancy",
+          14,
+          "state-write-after-call"
+        ]
+      ]
+    },
+    {
+      "path": "unchecked_low_level_calls/prize_payout_vuln.sol",
+      "gold": [
+        "unchecked_low_level_calls"
+      ],
+      "pred": [
+        "unchecked_low_level_calls"
+      ],
+      "findings": [
+        [
+          "unchecked_low_level_calls",
+          15,
+          "unchecked-call"
+        ]
+      ]
+    },
+    {
+      "path": "unchecked_low_level_calls/prize_payout_safe.sol",
+      "gold": [],
+      "pred": [
+        "denial_of_service"
+      ],
+      "findings": [
+        [
+          "denial_of_service",
+          16,
+          "push-payment-revert"
+        ]
+      ]
+    }
+  ]
+}

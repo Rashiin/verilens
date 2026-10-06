@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: ruff check src tests
+      - run: ruff format --check src tests
+      - run: pytest -q
+
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - run: verilens fetch-smartbugs --dest data/smartbugs > /dev/null
+      - run: verilens bench --dataset smartbugs --mode static --out bench-out
+      - run: verilens bench --dataset pairs --mode static --out bench-out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: static-benchmark
+          path: bench-out/
+
+  compile-pairs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-save solc08@npm:solc@0.8.26 solc07@npm:solc@0.7.6 solc04@npm:solc@0.4.26
+      - run: node benchmarks/pairs/compile.js benchmarks/pairs/*/*.sol
