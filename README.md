@@ -90,6 +90,8 @@ At line level, the static layer reports 492 candidates: 165 match a label, 327 d
 * **The recall cost is concentrated** in unchecked low-level calls (recall 100 → 75) and timestamp dependence (80 → 20), where the small model tends to call real issues benign.
 * **Reentrancy is the strongest case:** precision 71.8 → 84.4 with recall 90.3 → 87.1.
 
+On the **contrastive pairs**, verification rejected 8 of 29 candidates and cut the **false-alarm rate on safe twins from 29.4% (5/17) to 0% (0/17)**. Every fixed contract that the detectors still flagged (custom mutex, auth through an internal helper, commit-reveal, guarded arithmetic, long-window timestamp check) was correctly cleared.
+
 Closing the remaining gap to the 91.2 upper bound, with stronger models, self-consistency and calibrated thresholds, is the next step (see [Roadmap](#roadmap)). Full table: [`results/smartbugs-curated_hybrid_gemini-gemini-3.5-flash-lite.md`](results/smartbugs-curated_hybrid_gemini-gemini-3.5-flash-lite.md).
 
 To reproduce or try another model:
