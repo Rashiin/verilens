@@ -71,15 +71,34 @@ If the verifier kept exactly the correct candidates (an oracle):
 
 This is the headroom a verify-only approach can capture. The remaining SmartBugs recall gap (cross-function and cross-contract re-entrancy, logic bugs) can only be closed by discovery (`hybrid-plus`).
 
-### LLM modes
+### LLM verification (hybrid mode)
 
-LLM results depend on the model, so they are produced with your own key and written to `results/` alongside the static ones:
+First run: Gemini 3.5 Flash Lite, a small, free-tier model, at temperature 0 with all comments stripped.
+
+| SmartBugs-curated (143) | Static | Hybrid | Perfect verifier |
+|---|---:|---:|---:|
+| Category precision | 46.0 | **62.2** | 100.0 |
+| Category recall | 89.5 | 74.8 | 83.9 |
+| Category F1 | 60.8 | **67.9** | 91.2 |
+| Line precision (±2) | 33.5 | **51.0** | 100.0 |
+| Line recall (±2) | 78.8 | 61.7 | 78.8 |
+
+At line level, the static layer reports 492 candidates: 165 match a label, 327 do not.
+
+* **The LLM rejected 241 of them.** It removed about **62% of the false alarms** (≈204 of 327), but also discarded about **22% of the true findings** (≈37 of 165).
+* **Net effect: a clear precision and F1 gain.** That answers the first half of the research question positively.
+* **The recall cost is concentrated** in unchecked low-level calls (recall 100 → 75) and timestamp dependence (80 → 20), where the small model tends to call real issues benign.
+* **Reentrancy is the strongest case:** precision 71.8 → 84.4 with recall 90.3 → 87.1.
+
+Closing the remaining gap to the 91.2 upper bound, with stronger models, self-consistency and calibrated thresholds, is the next step (see [Roadmap](#roadmap)). Full table: [`results/smartbugs-curated_hybrid_gemini-gemini-3.5-flash-lite.md`](results/smartbugs-curated_hybrid_gemini-gemini-3.5-flash-lite.md).
+
+To reproduce or try another model:
 
 ```bash
 pip install -e ".[certs]"          # certifi CA bundle; needed on macOS python.org installs
 export GEMINI_API_KEY=...          # free key: https://aistudio.google.com/apikey
-verilens bench --dataset pairs --mode hybrid --rpm 10
-verilens bench --dataset smartbugs --mode hybrid --rpm 10
+verilens bench --dataset pairs --mode hybrid --model gemini-3.5-flash-lite --rpm 12
+verilens bench --dataset smartbugs --mode hybrid --model gemini-3.5-flash-lite --rpm 12
 verilens bench --dataset smartbugs --mode llm --rpm 10
 verilens bench --dataset smartbugs --mode hybrid-plus --rpm 10
 ```
