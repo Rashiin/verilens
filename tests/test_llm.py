@@ -104,3 +104,32 @@ def test_benchmark_aborts_when_llm_is_unreachable():
 
     with pytest.raises(LLMError, match="no LLM call has succeeded"):
         run_benchmark(load_pairs(), "hybrid", "pairs", ReplayClient(down), progress=False)
+
+
+def test_quota_exhaustion_is_never_swallowed():
+    from verilens.llm.base import QuotaExceeded
+
+    def quota(s, p):
+        raise QuotaExceeded("daily limit")
+
+    with pytest.raises(QuotaExceeded):
+        analyze(VULN, "hybrid", ReplayClient(quota))
+    with pytest.raises(QuotaExceeded):
+        analyze(VULN, "llm", ReplayClient(quota))
+
+
+def test_partial_failures_mark_the_run_incomplete():
+    from verilens.bench.datasets import load_pairs
+    from verilens.bench.run import run_benchmark, to_markdown
+
+    state = {"n": 0}
+
+    def flaky(s, p):
+        state["n"] += 1
+        if state["n"] == 1:
+            return json.dumps({"verdicts": [{"id": i, "verdict": "vulnerable", "confidence": 1} for i in range(1, 9)]})
+        return "not json"
+
+    summary = run_benchmark(load_pairs(), "hybrid", "pairs", ReplayClient(flaky), progress=False)
+    assert summary["complete"] is False
+    assert "INCOMPLETE RUN" in to_markdown(summary)

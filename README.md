@@ -91,6 +91,8 @@ Each report includes:
 * LLM errors (verification **fails open**, so an API error never hides a finding; a run where *no* LLM call succeeds aborts instead of masquerading as a hybrid result)
 * the cache hit count
 
+Free API tiers are small (at the time of writing, some Gemini models allow only ~20 requests/day). When the daily quota runs out, `verilens` stops immediately and tells you; every answer received so far is cached, so **re-running the same command later resumes where it stopped**. Runs with any error are marked `INCOMPLETE` and should not be reported.
+
 Runs with a local open-weight model work the same way: `--provider openai --base-url http://localhost:11434/v1 --model qwen2.5-coder:7b` (Ollama).
 
 ## Method details
@@ -146,7 +148,7 @@ verilens bench --dataset pairs --mode static
 
 ```bash
 pip install -e ".[dev]"
-pytest                                   # 55 tests, offline, ~2 s
+pytest                                   # 59 tests, offline, ~5 s
 verilens fetch-smartbugs --dest data/smartbugs
 verilens bench --dataset smartbugs --mode static --out results
 verilens bench --dataset pairs --mode static --out results

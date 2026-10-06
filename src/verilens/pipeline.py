@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 
 from .detectors import run_static
 from .findings import Finding, dedupe
-from .llm.base import LLMClient
+from .llm.base import LLMClient, QuotaExceeded
 from .llm.prompts import SYSTEM, as_float, discover_prompt, parse_json, verify_prompt
 from .solidity import SourceUnit
 from .taxonomy import normalize_category
@@ -43,6 +43,8 @@ def verify(
         try:
             data = parse_json(llm.complete(SYSTEM, verify_prompt(source, batch)))
             verdicts = {int(v["id"]): v for v in data.get("verdicts", []) if "id" in v}
+        except QuotaExceeded:
+            raise
         except Exception as e:  # fail open: keep unverified candidates
             errors.append(f"verify: {e}")
             kept.extend(batch)
@@ -66,6 +68,8 @@ def verify(
 def discover(source: str, unit: SourceUnit, llm: LLMClient, threshold: float = 0.5) -> tuple[list[Finding], list[str]]:
     try:
         data = parse_json(llm.complete(SYSTEM, discover_prompt(source)))
+    except QuotaExceeded:
+        raise
     except Exception as e:
         return [], [f"discover: {e}"]
     out: list[Finding] = []

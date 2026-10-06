@@ -75,6 +75,7 @@ def run_benchmark(
         summary["llm_calls"] = llm.calls
         summary["llm_cache_hits"] = llm.cache_hits
     summary["samples_with_errors"] = len(errors)
+    summary["complete"] = not errors
     summary["errors"] = errors
     summary["per_sample"] = scorer.per_sample
     return summary
@@ -91,6 +92,15 @@ def to_markdown(summary: dict) -> str:
     lines = [
         f"### {cfg['dataset']} - mode `{cfg['mode']}`" + (f" ({cfg['llm']})" if cfg["llm"] else ""),
         "",
+    ]
+    if not summary.get("complete", True):
+        lines += [
+            f"> **INCOMPLETE RUN:** {summary['samples_with_errors']} contract(s) had LLM errors and kept "
+            "unverified static findings. Do not report these numbers; fix the errors and re-run "
+            "(cached answers are reused).",
+            "",
+        ]
+    lines += [
         f"{summary['samples']} contracts, {summary['runtime_seconds']} s, verilens {cfg['verilens']}, {cfg['date']}.",
         "",
         "| Granularity | Precision | Recall | F1 |",

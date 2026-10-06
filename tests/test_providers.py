@@ -94,3 +94,38 @@ def test_certificate_errors_fail_fast_with_a_hint(monkeypatch):
     with pytest.raises(LLMError, match="certifi"):
         c.complete("s", "p")
     assert len(attempts) == 1  # not retried
+
+
+DAILY_429 = (
+    '{"error": {"code": 429, "message": "You exceeded your current quota. Quota exceeded for metric: '
+    "generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20. "
+    'Please retry in 4h34m51.2s.", "status": "RESOURCE_EXHAUSTED"}}'
+)
+
+
+def test_retry_after_parsing():
+    from verilens.llm.base import retry_after_seconds
+
+    assert retry_after_seconds(DAILY_429) == 4 * 3600 + 34 * 60 + 51.2
+    assert retry_after_seconds('{"details": [{"retryDelay": "17s"}]}') == 17
+    assert retry_after_seconds("", "5") == 5
+    assert retry_after_seconds("nothing") is None
+
+
+def test_daily_quota_stops_immediately(monkeypatch):
+    import io
+    import urllib.error
+
+    from verilens.llm.base import QuotaExceeded
+
+    attempts = []
+
+    def quota(*a, **k):
+        attempts.append(1)
+        raise urllib.error.HTTPError("u", 429, "Too Many Requests", {}, io.BytesIO(DAILY_429.encode()))
+
+    monkeypatch.setattr("verilens.llm.base.urlopen", quota)
+    c = GeminiClient(model="m", api_key="k")
+    with pytest.raises(QuotaExceeded, match="re-run the same command"):
+        c.complete("s", "p")
+    assert len(attempts) == 1

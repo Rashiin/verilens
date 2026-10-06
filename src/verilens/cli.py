@@ -16,7 +16,7 @@ from pathlib import Path
 from . import __version__
 from .bench.datasets import fetch_smartbugs, load_pairs, load_smartbugs
 from .bench.run import run_benchmark, to_markdown, write_report
-from .llm.base import LLMError
+from .llm.base import LLMError, QuotaExceeded
 from .llm.providers import make_client
 from .pipeline import MODES, analyze
 from .report import to_json, to_sarif, to_text
@@ -85,6 +85,13 @@ def cmd_bench(args) -> int:
     print(to_markdown(summary))
     j, m = write_report(summary, args.out)
     print(f"wrote {j} and {m}")
+    if not summary["complete"]:
+        first = next(iter(summary["errors"].values()))[0]
+        print(
+            f"warning: incomplete run, {summary['samples_with_errors']} contract(s) had LLM errors: {first}",
+            file=sys.stderr,
+        )
+        return 1
     return 0
 
 
@@ -125,6 +132,9 @@ def main(argv: list[str] | None = None) -> int:
         args.data = "data/smartbugs"
     try:
         return args.func(args)
+    except QuotaExceeded as e:
+        print(f"stopped: {e}", file=sys.stderr)
+        return 3
     except (LLMError, FileNotFoundError, ConnectionError) as e:
         print(f"error: {e}", file=sys.stderr)
         return 2

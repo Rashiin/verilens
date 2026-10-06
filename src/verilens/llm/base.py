@@ -14,6 +14,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.request
@@ -25,6 +26,32 @@ from ..net import SSL_HINT, is_cert_error, urlopen
 
 class LLMError(RuntimeError):
     pass
+
+
+class QuotaExceeded(LLMError):
+    """The provider's quota is exhausted for a long time (e.g. a free-tier daily limit).
+
+    Never retried and never swallowed: a benchmark must stop rather than score
+    half-verified output. Successful responses are cached, so re-running the same
+    command later resumes where it stopped.
+    """
+
+
+LONG_WAIT_SECONDS = 120
+
+
+def retry_after_seconds(body: str, header: str | None = None) -> float | None:
+    """Best-effort parse of how long the server asks us to wait."""
+    if header and header.strip().replace(".", "", 1).isdigit():
+        return float(header)
+    m = re.search(r'"retryDelay"\s*:\s*"([\d.]+)s"', body)
+    if m:
+        return float(m.group(1))
+    m = re.search(r"retry in (?:(\d+)h)?(?:(\d+)m)?([\d.]+)s", body)
+    if m:
+        h, mins, secs = m.groups()
+        return int(h or 0) * 3600 + int(mins or 0) * 60 + float(secs)
+    return None
 
 
 class LLMClient:
@@ -81,12 +108,22 @@ class LLMClient:
             try:
                 return self._complete(system, prompt)
             except urllib.error.HTTPError as e:
+                body = e.read().decode(errors="replace")
+                if e.code == 429:
+                    wait = retry_after_seconds(body, e.headers.get("Retry-After") if e.headers else None)
+                    daily = re.search(r"per ?day|PerDay|free_tier_requests", body)
+                    if daily or (wait is not None and wait > LONG_WAIT_SECONDS):
+                        hint = f" Retry in ~{wait / 3600:.1f} h." if wait else ""
+                        raise QuotaExceeded(
+                            f"{self.name}: quota exhausted after {self.calls} successful call(s).{hint} "
+                            "Answers so far are cached; re-run the same command later to resume, "
+                            "or pass --model / --provider to use another model."
+                        ) from e
                 retryable = e.code == 429 or e.code >= 500
                 if not retryable or attempt == self.max_retries:
-                    body = e.read().decode(errors="replace")[:500]
-                    raise LLMError(f"{self.name}: HTTP {e.code}: {body}") from e
-                retry_after = e.headers.get("Retry-After") if e.headers else None
-                time.sleep(float(retry_after) if retry_after and retry_after.isdigit() else delay)
+                    raise LLMError(f"{self.name}: HTTP {e.code}: {body[:500]}") from e
+                wait = retry_after_seconds(body, e.headers.get("Retry-After") if e.headers else None)
+                time.sleep(min(wait, LONG_WAIT_SECONDS) if wait else delay)
                 delay = min(delay * 2, 60)
             except (urllib.error.URLError, TimeoutError) as e:
                 if is_cert_error(e):
